@@ -5,7 +5,7 @@ const fetchDocument = filePath =>
   new Promise((resolve, reject) => {
     const zip = new StreamZip({
       file: filePath,
-      storeEntries: true
+      storeEntries: true,
     });
 
     let xml = '';
@@ -20,7 +20,7 @@ const fetchDocument = filePath =>
         });
         docStream.on('end', () => {
           zip.close();
-          const docJson = convert.xml2json(xml, { compact: false, spaces: 4 });
+          const docJson = convert.xml2json(xml, {compact: false, spaces: 4});
           resolve(JSON.parse(docJson));
         });
       });

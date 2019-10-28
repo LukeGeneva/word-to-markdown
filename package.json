@@ -4,15 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha",
+    "test:watch": "mocha --watch"
   },
   "author": "Luke Geneva",
   "license": "ISC",
   "dependencies": {
+    "chai": "^4.2.0",
     "node-stream-zip": "^1.8.0",
     "xml-js": "^1.6.9"
   },
   "devDependencies": {
+    "mocha": "^6.0.2",
     "prettier": "^1.16.4"
   }
 }
