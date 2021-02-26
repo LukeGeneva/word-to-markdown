@@ -23,4 +23,16 @@ describe("wordToMarkdown", () => {
     const output = await wordToMarkdown(filePath);
     assert.equal(output, "*Bold text.*");
   });
+
+  it("should print italic text", async () => {
+    const filePath = resolveTestFilePath("italic-text.docx");
+    const output = await wordToMarkdown(filePath);
+    assert.equal(output, "_Italic text._");
+  });
+
+  it("should combine styles", async () => {
+    const filePath = resolveTestFilePath("bold-and-italic-text.docx");
+    const output = await wordToMarkdown(filePath);
+    assert.equal(output, "*_Bold and italic text._*");
+  });
 });

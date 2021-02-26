@@ -25,14 +25,21 @@ const renderRun = (run) => {
 };
 
 const renderText = (style, text) => {
-  if (style.isBold) return `*${text}*`;
-  return text;
+  let wrap = "";
+  if (style.isBold) wrap += "*";
+  if (style.isItalic) wrap += "_";
+  const reverseWrap = wrap
+    .split("")
+    .reverse()
+    .join("");
+  return wrap + text + reverseWrap;
 };
 
 const getStyle = (run) => {
   const rPr = run.elements.find((e) => e.name === "w:rPr");
   const isBold = !!rPr.elements.find((e) => e.name === "w:b");
-  return { isBold };
+  const isItalic = !!rPr.elements.find((e) => e.name === "w:i");
+  return { isBold, isItalic };
 };
 
 const wordToMarkdown = async (filePath) => {
