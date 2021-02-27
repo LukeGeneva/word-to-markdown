@@ -13,7 +13,10 @@ const renderBody = (body) => {
 
 const renderParagraph = (paragraph) => {
   const runs = paragraph.elements.filter((e) => e.name === "w:r");
-  return runs.map(renderRun).join("");
+  return runs
+    .map(renderRun)
+    .join("")
+    .replace(/\*{4}/g, "**");
 };
 
 const renderRun = (run) => {
@@ -26,8 +29,8 @@ const renderRun = (run) => {
 
 const renderText = (style, text) => {
   let wrap = "";
-  if (style.isBold) wrap += "*";
-  if (style.isItalic) wrap += "_";
+  if (style.isBold) wrap += "**";
+  if (style.isItalic) wrap += "*";
   const reverseWrap = wrap
     .split("")
     .reverse()
